@@ -1,8 +1,8 @@
 package com.library.library.service;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service("CollectionService")
 public class CollectionService{
     public String search(){
         return "list";

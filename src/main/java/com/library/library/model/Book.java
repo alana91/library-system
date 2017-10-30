@@ -2,6 +2,7 @@ package com.library.library.model;
 
 import sun.util.calendar.BaseCalendar;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Book extends Item {
@@ -9,7 +10,7 @@ public class Book extends Item {
     private String publisher;
     private String edition;
 
-    public Book(BaseCalendar.Date date, String title, List authors, Area area, Subject subject, String country,
+    public Book(LocalDate date, String title, List authors, Area area, Subject subject, String country,
                 String state, String city, String ISBN, String publisher, String edition) {
         super(date, title, authors, area, subject, country, state, city);
         this.ISBN = ISBN;

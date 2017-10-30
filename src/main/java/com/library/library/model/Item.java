@@ -1,11 +1,10 @@
 package com.library.library.model;
 
-import sun.util.calendar.BaseCalendar;
-
+import java.time.LocalDate;
 import java.util.List;
 
-public abstract class Item {
-    private BaseCalendar.Date date;
+public class Item {
+    private LocalDate date;
     private String title;
     private List<PersonOrCompany> authors;
     private Area area;
@@ -17,7 +16,7 @@ public abstract class Item {
 
     public Item(){}
 
-    public Item(BaseCalendar.Date date, String title, List authors, Area area, Subject subject, String country,
+    public Item(LocalDate date, String title, List authors, Area area, Subject subject, String country,
                 String state, String city) {
         this.date = date;
         this.title = title;
@@ -30,7 +29,7 @@ public abstract class Item {
         id++;
     }
 
-    public BaseCalendar.Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

@@ -1,7 +1,6 @@
 package com.library.library.model;
 
-import sun.util.calendar.BaseCalendar;
-
+import java.time.LocalDate;
 import java.util.List;
 
 public class Video extends Item {
@@ -9,7 +8,7 @@ public class Video extends Item {
     private List<PersonOrCompany> producers;
     private List<PersonOrCompany> scriptwriters;
 
-    public Video(BaseCalendar.Date date, String title, List authors, Area area, Subject subject, String country,
+    public Video(LocalDate date, String title, List authors, Area area, Subject subject, String country,
                  String state, String city, List<PersonOrCompany> directors, List<PersonOrCompany> producers,
                  List<PersonOrCompany> scriptwriters) {
         super(date, title, authors, area, subject, country, state, city);
