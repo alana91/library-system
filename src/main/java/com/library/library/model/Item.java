@@ -1,35 +1,42 @@
 package com.library.library.model;
 
-import java.time.LocalDate;
+import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
+import java.security.SecureRandom;
 
-public class Item {
-    private LocalDate date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@name")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Audio.class, name = "Audio"),
+        @JsonSubTypes.Type(value = Book.class, name = "Book"),
+        @JsonSubTypes.Type(value = Periodical.class, name = "Periodical"),
+        @JsonSubTypes.Type(value = Video.class, name = "Video")})
+
+public abstract class Item {
+    private Date date;
     private String title;
     private List<PersonOrCompany> authors;
-    private Area area;
-    private Subject subject;
+    private String area;
     private String country;
-    private String state;
-    private String city;
-    private static long id = 0;
+    private String id;
 
     public Item(){}
 
-    public Item(LocalDate date, String title, List authors, Area area, Subject subject, String country,
-                String state, String city) {
+    public Item(Date date, String title, List<PersonOrCompany> authors, String area, String country) {
         this.date = date;
         this.title = title;
         this.authors = authors;
         this.area = area;
-        this.subject = subject;
         this.country = country;
-        this.state = state;
-        this.city = city;
-        id++;
+        setId();
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -37,41 +44,44 @@ public class Item {
         return title;
     }
 
-    public List getAuthors() {
+    public List<PersonOrCompany> getAuthors() {
         return authors;
     }
 
-    public Area getArea() {
+    public String getArea() {
         return area;
-    }
-
-    public Subject getSubject() {
-        return subject;
     }
 
     public String getCountry() {
         return country;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public boolean alreadyExists(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Item item = (Item) o;
-
-        if (!title.equals(item.title)) return false;
-        return authors.equals(item.authors);
-    }
-
-    public static long getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthors(List<PersonOrCompany> authors) {
+        this.authors = authors;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setId() {
+        SecureRandom random = new SecureRandom();
+        this.id = new BigInteger(130, random).toString(32);
     }
 }

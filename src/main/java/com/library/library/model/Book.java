@@ -1,32 +1,44 @@
 package com.library.library.model;
 
-import sun.util.calendar.BaseCalendar;
-
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class Book extends Item {
     private String ISBN;
-    private String publisher;
-    private String edition;
+    private List<PersonOrCompany> publisher;
+    private Integer edition;
 
-    public Book(LocalDate date, String title, List authors, Area area, Subject subject, String country,
-                String state, String city, String ISBN, String publisher, String edition) {
-        super(date, title, authors, area, subject, country, state, city);
+    public Book(Date date, String title, List<PersonOrCompany> authors, String area, String country, String ISBN,
+                List<PersonOrCompany> publisher, Integer edition) {
+        super(date, title, authors, area, country);
         this.ISBN = ISBN;
         this.publisher = publisher;
         this.edition = edition;
     }
 
+    public Book(){}
+
     public String getISBN() {
         return ISBN;
     }
 
-    public String getPublisher() {
+    public List<PersonOrCompany> getPublisher() {
         return publisher;
     }
 
-    public String getEdition() {
+    public Integer getEdition() {
         return edition;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public void setPublisher(List<PersonOrCompany> publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setEdition(Integer edition) {
+        this.edition = edition;
     }
 }

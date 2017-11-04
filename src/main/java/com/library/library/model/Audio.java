@@ -1,18 +1,19 @@
 package com.library.library.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+
 
 public class Audio extends Item {
     private List<PersonOrCompany> recordCompanies;
 
-    public Audio(LocalDate date, String title, List authors, Area area, Subject subject, String country,
-                 String state, String city, List recordCompanies) {
-        super(date, title, authors, area, subject, country, state, city);
+    public Audio(Date date, String title, List<PersonOrCompany> authors, String area, String country,
+                 List<PersonOrCompany> recordCompanies) {
+        super(date, title, authors, area, country);
         this.recordCompanies = recordCompanies;
     }
 
-    public List getRecordCompanies() {
+    public List<PersonOrCompany> getRecordCompanies() {
         return recordCompanies;
     }
 }
