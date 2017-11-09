@@ -1,23 +1,24 @@
 package com.library.library.model;
 
-import java.util.List;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 
 public class User {
-    private static int id = 0;
+    private String id;
     private String name;
     private Boolean hasDebt;
     private String accessLevel; //client, clerk, manager
-    private List<Loan> loans;
 
-    public User(String name, Boolean hasDebt, String accessLevel, List<Loan> loans) {
+    public User(){}
+
+    public User(String name, Boolean hasDebt, String accessLevel) {
         this.name = name;
         this.hasDebt = hasDebt;
         this.accessLevel = accessLevel;
-        this.loans = loans;
-        id++;
+        setId();
     }
 
-    public static int getId() {
+    public String getId() {
         return id;
     }
 
@@ -33,7 +34,26 @@ public class User {
         return accessLevel;
     }
 
-    public List<Loan> getLoans() {
-        return loans;
+    public void setId() {
+        SecureRandom random = new SecureRandom();
+        this.id = new BigInteger(130, random).toString(32);
+    }
+
+    public void setName(String name) {
+        if(name != null) {
+            this.name = name;
+        }
+    }
+
+    public void setHasDebt(Boolean hasDebt) {
+        if(hasDebt != null) {
+            this.hasDebt = hasDebt;
+        }
+    }
+
+    public void setAccessLevel(String accessLevel) {
+        if(accessLevel != null) {
+            this.accessLevel = accessLevel;
+        }
     }
 }

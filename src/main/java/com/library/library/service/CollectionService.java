@@ -22,4 +22,12 @@ public class CollectionService{
         item.setId();
         return itemDao.addItem(item);
     }
+
+    public Item updateItem(Item item, String id){
+        return itemDao.updateItem(item, id);
+    }
+
+    public void removeItem(String id){
+        itemDao.removeItem(id);
+    }
 }

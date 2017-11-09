@@ -27,4 +27,18 @@ public class ItemDao {
         return item;
     }
 
+    public Item updateItem(Item item, String id){
+        Item selectedItem = getItem(id);
+        selectedItem.setArea(item.getArea());
+        selectedItem.setAuthors(item.getAuthors());
+        selectedItem.setCountry(item.getCountry());
+        selectedItem.setDate(item.getDate());
+        selectedItem.setTitle(item.getTitle());
+        return selectedItem;
+    }
+
+    public void removeItem(String id){
+        Item item = getItem(id);
+        items.remove(item);
+    }
 }

@@ -61,23 +61,33 @@ public abstract class Item {
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        if(date != null) {
+            this.date = date;
+        }
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        if(title != null) {
+            this.title = title;
+        }
     }
 
     public void setAuthors(List<PersonOrCompany> authors) {
-        this.authors = authors;
+        if(authors != null) {
+            this.authors = authors;
+        }
     }
 
     public void setArea(String area) {
-        this.area = area;
+        if (area != null){
+            this.area = area;
+        }
     }
 
     public void setCountry(String country) {
-        this.country = country;
+        if(country != null) {
+            this.country = country;
+        }
     }
 
     public void setId() {

@@ -8,6 +8,8 @@ public class Book extends Item {
     private List<PersonOrCompany> publisher;
     private Integer edition;
 
+    public Book(){}
+
     public Book(Date date, String title, List<PersonOrCompany> authors, String area, String country, String ISBN,
                 List<PersonOrCompany> publisher, Integer edition) {
         super(date, title, authors, area, country);
@@ -15,8 +17,6 @@ public class Book extends Item {
         this.publisher = publisher;
         this.edition = edition;
     }
-
-    public Book(){}
 
     public String getISBN() {
         return ISBN;
@@ -31,14 +31,20 @@ public class Book extends Item {
     }
 
     public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+        if(ISBN != null) {
+            this.ISBN = ISBN;
+        }
     }
 
     public void setPublisher(List<PersonOrCompany> publisher) {
-        this.publisher = publisher;
+        if(publisher != null) {
+            this.publisher = publisher;
+        }
     }
 
     public void setEdition(Integer edition) {
-        this.edition = edition;
+        if(edition != null) {
+            this.edition = edition;
+        }
     }
 }

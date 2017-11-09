@@ -2,6 +2,7 @@ package com.library.library.dao;
 
 import com.library.library.model.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,12 +14,19 @@ public class Helper {
 
     public Helper(){}
 
-    private static Date date = new Date();
+    private Date date = new Date();
+    private Date dueDate = new Date();
     private List items;
     private List authors;
     private List publishers;
     private List recordCompanies;
     private List directors;
+    private List users;
+    private List loans;
+
+    private void passTime(){
+        dueDate.setTime(date.getTime() + 1296000000);
+    }
 
     protected List<Item> createItemList(){
         if(items==null){
@@ -39,6 +47,31 @@ public class Helper {
             items.add(new Video(date, "Video Title 2", createDirectorList(), "Horror","South Korea"));
         }
         return items;
+    }
+
+    protected List<User> createUserList(){
+        if(users==null){
+            users = new LinkedList<User>();
+            users.add(new User("John", false, "client"));
+            users.add(new User("Mary", false, "clerk"));
+            users.add(new User("Elliot", false, "clerk"));
+            users.add(new User("Mary", false, "client"));
+            users.add(new User("Melissa", false, "clerk"));
+            users.add(new User("Edward", false, "client"));
+        }
+        return users;
+    }
+
+    protected List<Loan> createLoanList(){
+        if(loans==null){
+            passTime();
+            users = createUserList();
+            items = createItemList();
+            loans = new LinkedList<Loan>();
+            loans.add(new Loan((User)users.get(0), (User)users.get(1), date, dueDate, items));
+            loans.add(new Loan((User)users.get(3), (User)users.get(2), date, dueDate, items));
+        }
+        return loans;
     }
 
     private List<PersonOrCompany> createAuthorList(){
