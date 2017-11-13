@@ -3,5 +3,5 @@
 Small library system project for college.
 
 **Known issues:**
-- Method to set debt when a loan is updated is untested. Completely. :blush:
+- Method to set debt when a loan is updated is untested. Completely. I don't meant unit tests. :sweat:
 - Helper is ugly as %*&#
