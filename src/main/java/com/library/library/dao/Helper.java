@@ -1,3 +1,5 @@
+// codebeat:disable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]
+
 package com.library.library.dao;
 
 import com.library.library.model.*;
@@ -112,4 +114,7 @@ public class Helper {
         }
         return recordCompanies;
     }
+
 }
+
+// codebeat:enable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]
