@@ -1,6 +1,6 @@
 package com.library.library.controller;
 
-import com.library.library.model.Item;
+import com.library.library.DTO.ItemDTO;
 import com.library.library.service.CollectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,30 +18,30 @@ public class CollectionController {
     private CollectionService service;
 
     @GetMapping("/collection")
-    public List<Item> getAll(){
+    public List<ItemDTO> getAll(){
         return service.getAll();
     }
 
     @GetMapping("/collection/{id}")
-    public Item getItem(@PathVariable String id){
+    public ItemDTO getItem(@PathVariable String id){
         return service.getItem(id);
     }
 
     @PostMapping("/collection")
-    public ResponseEntity<Void> addItem(@RequestBody Item newItem){
-        Item item = service.addItem(newItem);
+    public ResponseEntity<Void> addItem(@RequestBody ItemDTO newItemDTO){
+        ItemDTO itemDTO = service.addItem(newItemDTO);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(item.getId())
+                .buildAndExpand(itemDTO.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/collection/{id}")
-    public ResponseEntity<?> updateItem(@PathVariable String id, @RequestBody Item newItem){
-        Item updatedItem = service.updateItem(newItem, id);
-        return new ResponseEntity<Item>(updatedItem, HttpStatus.OK);
+    public ResponseEntity<?> updateItem(@PathVariable String id, @RequestBody ItemDTO newItemDTO){
+        ItemDTO updatedItemDTO = service.updateItem(newItemDTO, id);
+        return new ResponseEntity<ItemDTO>(updatedItemDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/collection/{id}")

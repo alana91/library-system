@@ -1,54 +1,61 @@
 // codebeat:disable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]
 
-package com.library.library.dao;
+package com.library.library.DAO;
 
-import com.library.library.model.*;
+import com.library.library.DTO.*;
+import com.library.library.model.User;
 
-import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Helper {
+public final class Helper {
     /**
      * This class will be used to create objects to be returned as we're not connecting to a real database
      */
 
+    private static Helper instance = null;
+
     public Helper(){}
 
-    private Date date = new Date();
-    private Date dueDate = new Date();
-    private List items;
-    private List authors;
-    private List publishers;
-    private List recordCompanies;
-    private List directors;
-    private List users;
-    private List loans;
+    static Helper getInstance() {
+        if(instance == null) {
+            instance = new Helper();
+        }
+        return instance;
+    }
+
+    private static Date date = new Date();
+    private static Date dueDate = new Date();
+    private static List items;
+    private static List users;
+    private static List loans;
 
     private void passTime(){
         dueDate.setTime(date.getTime() + 1296000000);
     }
 
-    protected List<Item> createItemList(){
+
+
+    protected List<ItemDTO> createItemList(){
         if(items==null){
-            items = new LinkedList<Item>();
-            items.add(new Book(date, "Book Title", createAuthorList(), "Neuroscience", "Argentina",
-                    "ISBN", createPublisher(), 3, true, "1"));
-            items.add(new Book(date, "Book Title 2", createAuthorList(), "Computer Science", "Brazil",
-                    "ISBN", createPublisher(), 3, true, "2"));
-            items.add(new Audio(date, "Audio Title", createAuthorList(), "Rock", "Japan",
-                    createRecordCompany(), true, "3"));
-            items.add(new Audio(date, "Audio Title 2", createAuthorList(), "Country", "USA",
-                    createRecordCompany(), false,"4"));
-            items.add(new Periodical(date, "Magazine Title", null, "Gossip", "England",
-                    createPublisher(), 22, false,"5"));
-            items.add(new Periodical(date, "Magazine Title", null, "Microbiology", "France",
-                    createPublisher(), 1, false,"6"));
-            items.add(new Video(date, "Video Title", createDirectorList(), "Documentary","Denmark",
+            items = new LinkedList<ItemDTO>();
+            items.add(new BookDTO(date, "BookDTO Title", "Author", "Neuroscience", "Argentina",
+                    "ISBN", "Publisher", 3, true, "1"));
+            items.add(new BookDTO(date, "BookDTO Title 2", "Author", "Computer Science", "Brazil",
+                    "ISBN", "Publisher", 3, true, "2"));
+            items.add(new AudioDTO(date, "AudioDTO Title", "Singer", "Rock", "Japan",
+                    "Record Company", true, "3"));
+            items.add(new AudioDTO(date, "AudioDTO Title 2", "Band", "Country", "USA",
+                    "Record Company", false,"4"));
+            items.add(new PeriodicalDTO(date, "Magazine Title", null, "Gossip", "England",
+                    "Publisher", 22, false,"5"));
+            items.add(new PeriodicalDTO(date, "Magazine Title", null, "Microbiology", "France",
+                    "Publisher", 1, false,"6"));
+            items.add(new VideoDTO(date, "VideoDTO Title", "Director", "Documentary","Denmark",
                     false,"7"));
-            items.add(new Video(date, "Video Title 2", createDirectorList(), "Horror","South Korea",
+            items.add(new VideoDTO(date, "VideoDTO Title 2", "Director", "Horror","South Korea",
                     false,"8"));
         }
         return items;
@@ -67,52 +74,18 @@ public class Helper {
         return users;
     }
 
-    protected List<Loan> createLoanList(){
+    protected List<LoanDTO> createLoanList(){
         if(loans==null){
             passTime();
             users = createUserList();
             items = createItemList();
-            loans = new LinkedList<Loan>();
-            loans.add(new Loan((User)users.get(0), (User)users.get(1), date, dueDate,
-                    new LinkedList<>(Arrays.asList((Item)items.get(0))), false, "1"));
-            loans.add(new Loan((User)users.get(3), (User)users.get(2), date, dueDate,
-                    new LinkedList<>(Arrays.asList((Item)items.get(1), (Item)items.get(2))),false, "2"));
+            loans = new LinkedList<LoanDTO>();
+            loans.add(new LoanDTO((User)users.get(0), (User)users.get(1), date, dueDate,
+                    new LinkedList<>(Arrays.asList((ItemDTO)items.get(0))), false, "1"));
+            loans.add(new LoanDTO((User)users.get(3), (User)users.get(2), date, dueDate,
+                    new LinkedList<>(Arrays.asList((ItemDTO)items.get(1), (ItemDTO)items.get(2))),false, "2"));
         }
         return loans;
-    }
-
-    private List<PersonOrCompany> createAuthorList(){
-        if(authors==null){
-            authors = new LinkedList<PersonOrCompany>();
-            authors.add(new PersonOrCompany("Author 1"));
-            authors.add(new PersonOrCompany("Author 2"));
-        }
-        return authors;
-    }
-
-    private List<PersonOrCompany> createDirectorList(){
-        if(directors==null){
-            directors = new LinkedList<PersonOrCompany>();
-            directors.add(new PersonOrCompany("Director 1"));
-            directors.add(new PersonOrCompany("Director 2"));
-        }
-        return directors;
-    }
-
-    private List<PersonOrCompany> createPublisher(){
-        if(publishers==null){
-            publishers = new LinkedList<PersonOrCompany>();
-            publishers.add(new PersonOrCompany("Publisher"));
-        }
-        return publishers;
-    }
-
-    private List<PersonOrCompany> createRecordCompany(){
-        if(recordCompanies==null){
-            recordCompanies = new LinkedList<PersonOrCompany>();
-            recordCompanies.add(new PersonOrCompany("Record Company"));
-        }
-        return recordCompanies;
     }
 
 }

@@ -1,42 +1,50 @@
-package com.library.library.dao;
+package com.library.library.DAO;
 
-import com.library.library.model.Loan;
+import com.library.library.DTO.LoanDTO;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class LoanDao {
-    private Helper helper = new Helper();
-    private List<Loan> loans = helper.createLoanList();
+@Repository
+public class LoanDao implements LoanDaoInterface{
+    private Helper helper = Helper.getInstance();
+    private List<LoanDTO> loanDTOS = helper.createLoanList();
 
-    public List<Loan> getAll(){
-        return loans;
+    @Override
+    public List<LoanDTO> getAll(){
+        return loanDTOS;
     }
 
-    public Loan getLoan(String id){
-        Loan selectedLoan = null;
-        for(Loan loan : loans){
-            if(loan.getId().equals(id)){
-                selectedLoan = loan;
+    @Override
+    public LoanDTO getLoan(String id){
+        LoanDTO selectedLoanDTO = null;
+        for(LoanDTO loanDTO : loanDTOS){
+            if(loanDTO.getId().equals(id)){
+                selectedLoanDTO = loanDTO;
                 break;
             }
         }
-        return selectedLoan;
+        return selectedLoanDTO;
     }
 
-    public Loan addLoan(Loan loan){
-        loans.add(loan);
-        return loan;
+    @Override
+    public LoanDTO addLoan(LoanDTO loanDTO){
+        loanDTOS.add(loanDTO);
+        return loanDTO;
     }
 
-    public Loan updateLoan(Loan loan, String id){
-        Loan selectedLoan = getLoan(id);
-        selectedLoan.setDueDate(loan.getDueDate());
-        selectedLoan.setIsReturned(loan.getIsReturned());
-        return selectedLoan;
+    @Override
+    public LoanDTO updateLoan(LoanDTO loanDTO, String id){
+        LoanDTO selectedLoanDTO = getLoan(id);
+        selectedLoanDTO.setDueDate(loanDTO.getDueDate());
+        selectedLoanDTO.setIsReturned(loanDTO.getIsReturned());
+        return selectedLoanDTO;
     }
+
+    @Override
     public void removeLoan(String id){
-        Loan loan = getLoan(id);
-        loans.remove(loan);
+        LoanDTO loanDTO = getLoan(id);
+        loanDTOS.remove(loanDTO);
     }
 
 }

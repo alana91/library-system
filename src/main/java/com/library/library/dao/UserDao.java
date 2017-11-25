@@ -1,17 +1,22 @@
-package com.library.library.dao;
+package com.library.library.DAO;
 
 import com.library.library.model.User;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class UserDao {
-    private Helper helper = new Helper();
+@Repository
+public class UserDao implements UserDaoInterface{
+    private Helper helper = Helper.getInstance();
     private List<User> users = helper.createUserList();
 
+    @Override
     public List<User> getAll(){
         return users;
     }
 
+    @Override
     public User getUser(String id){
         User selectedUser = null;
         for(User user : users){
@@ -23,11 +28,13 @@ public class UserDao {
         return selectedUser;
     }
 
+    @Override
     public User addUser(User user){
         users.add(user);
         return user;
     }
 
+    @Override
     public User updateUser(User user, String id){
         User selectedUser = getUser(id);
         selectedUser.setName(user.getName());
@@ -36,6 +43,7 @@ public class UserDao {
         return selectedUser;
     }
 
+    @Override
     public void removeUser(String id){
         User user = getUser(id);
         users.remove(user);
