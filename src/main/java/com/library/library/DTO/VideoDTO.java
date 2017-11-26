@@ -1,3 +1,5 @@
+// codebeat:disable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]
+
 package com.library.library.DTO;
 
 import java.util.Date;
@@ -108,3 +110,5 @@ public class VideoDTO implements ItemDTO {
         }
     }
 }
+
+// codebeat:enable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]

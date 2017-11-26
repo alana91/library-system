@@ -1,35 +1,38 @@
 package com.library.library.service;
 
-import com.library.library.DAO.UserDao;
+import com.library.library.DAO.UserDAOImpl;
 import com.library.library.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service("UserService")
-public class UserService {
+public final class UserService {
 
-    @Autowired
-    private UserDao userDao;
+    private static UserService instance = null;
+
+    public static UserService getInstance() {
+        if(instance == null) {
+            instance = new UserService();
+        }
+        return instance;
+    }
+
+    private UserDAOImpl userDaoImpl = UserDAOImpl.getInstance();
 
     public List<User> getAll(){
-        return userDao.getAll();
+        return userDaoImpl.getAll();
     }
 
     public User getUser(String id){
-        return userDao.getUser(id);
+        return userDaoImpl.getUser(id);
     }
 
     public User addUser(User item){
-        return userDao.addUser(item);
+        return userDaoImpl.addUser(item);
     }
 
     public User updateUser(User item, String id){
-        return userDao.updateUser(item, id);
-    }
-
-    public void removeUser(String id){
-        userDao.removeUser(id);
+        return userDaoImpl.updateUser(item, id);
     }
 }

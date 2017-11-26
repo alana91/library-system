@@ -1,35 +1,44 @@
 package com.library.library.service;
 
+import com.library.library.DAO.Loan_ItemDAOImpl;
 import com.library.library.DTO.LoanDTO;
-import com.library.library.DAO.LoanDao;
+import com.library.library.DAO.LoanDAOImpl;
 import com.library.library.DTO.ItemDTO;
+import com.library.library.model.Loan;
+import com.library.library.model.Loan_Item;
 import com.library.library.model.User;
+import com.library.library.service.converter.DTOToLoan;
+import com.library.library.service.converter.LoanToDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("LoanService")
 
 public class LoanService {
 
     @Autowired
-    private LoanDao loanDao;
-
+    private LoanDAOImpl loanDAO;
+    
     @Autowired
-    private UserService userService;
+    private Loan_ItemDAOImpl loanItemDAO;
 
-    @Autowired
-    private CollectionService collectionService;
+    private UserService userService = UserService.getInstance();
+    private CollectionService collectionService = CollectionService.getInstance();
+    private LoanToDTO loanToDTO = LoanToDTO.getInstance();
+    private DTOToLoan dtoToLoan = DTOToLoan.getInstance();
 
     public List<LoanDTO> getAll(){
-        return loanDao.getAll();
+        return loanDAO.getAll().stream()
+               .map(loanToDTO::convert)
+               .collect(Collectors.toList());
     }
 
     public LoanDTO getLoan(String id){
-        return loanDao.getLoan(id);
+        return loanToDTO.convert(loanDAO.getLoan(id));
     }
 
     public LoanDTO addLoan(LoanDTO loanDTO){
@@ -52,20 +61,22 @@ public class LoanService {
             return null;
         }
 
-        List<ItemDTO> borrowedItemDTOS = new LinkedList<>();
-
         for(ItemDTO itemDTO : loanDTO.getItemDTOS()){
-            borrowedItemDTOS.add(collectionService.getItem(itemDTO.getId()));
-            collectionService.getItem(itemDTO.getId()).setIsBorrowed(true);
+            itemDTO.setIsBorrowed(true);
+            collectionService.updateItem(itemDTO, itemDTO.getId());
+            loanItemDAO.addRelation(new Loan_Item(loanDTO.getLoanDate().getTime(), itemDTO.getId(), loanDTO.getId()));
         }
 
-        loanDTO.setItemDTOS(borrowedItemDTOS);
         loanDTO.setIsReturned(false);
 
-        return loanDao.addLoan(loanDTO);
+        Loan loan = dtoToLoan.convert(loanDTO);
+        return loanToDTO.convert(loanDAO.addLoan(loan));
     }
 
     public LoanDTO updateLoan(LoanDTO loanDTO, String id){
+
+        Loan loan = dtoToLoan.convert(getLoan(id));
+
         if(isDue(loanDTO)){
             loanDTO.getBorrower().setHasDebt(true);
             userService.updateUser(loanDTO.getBorrower(), loanDTO.getBorrower().getId());
@@ -76,20 +87,17 @@ public class LoanService {
                 collectionService.updateItem(itemDTO, itemDTO.getId());
             }
         }
-        return loanDao.updateLoan(loanDTO, id);
-    }
 
-    public void removeLoan(String id){
-        loanDao.removeLoan(id);
+        loan.setDueDate(loanDTO.getDueDate());
+        loan.setReturned(loanDTO.getIsReturned());
+
+        return loanToDTO.convert(loanDAO.updateLoan(loan, id));
     }
 
     private Boolean isDue(LoanDTO loanDTO) {
         Date today = new Date();
         long diff = today.getTime() - getLoan(loanDTO.getId()).getDueDate().getTime();
-        if (diff >= 86400000) {
-            return true;
-        }
-        return false;
+        return diff >= 86400000;
     }
 
     private Boolean checkAvailability(List<ItemDTO> loanItemDTOS){

@@ -1,0 +1,310 @@
+{
+	"info": {
+		"name": "Library",
+		"_postman_id": "80834ef1-674a-727a-0650-17e85ca02046",
+		"description": "Requests for Library application\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Collection",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8090/collection",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"collection"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Collection Item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"@name\": \"BookDTO\",\n        \"date\": 1509750708428,\n        \"title\": \"Pollyanna\",\n        \"author\": \"Eleanor H. Porter\",\n        \"area\": \"Fiction\",\n        \"country\": \"USA\",\n        \"publisher\": \"Pública\",\n        \"edition\": 3,\n        \"isbn\": \"ISBN\",\n        \"isBorrowed\":false,\n        \"id\": \"11\"\n    }"
+				},
+				"url": {
+					"raw": "localhost:8090/collection",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"collection"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Collection Item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8090/collection/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"collection",
+						"11"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Collection Item",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"@name\":\"BookDTO\",\n   \"date\":null,\n   \"title\":\"A New Book Title\",\n   \"author\":null,\n   \"area\":null,\n   \"country\":null,\n   \"id\":\"2\",\n   \"publisher\":null,\n   \"edition\":null,\n   \"isbn\":null,\n   \"isBorrowed\":false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8090/collection/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"collection",
+						"2"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8090/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"id\": \"7\",\n\"name\": \"Alyssa\",\n\"hasDebt\": false,\n\"accessLevel\": \"client\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8090/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8090/users/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"users",
+						"7"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"3ng1qoninl3vg64a1218te5q0v\",\n    \"name\": \"John Lock\",\n    \"hasDebt\": false,\n    \"accessLevel\": \"client\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8090/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"users",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Loans",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8090/loans",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"loans"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST Loan",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"4\",\n        \"borrower\": {\n            \"id\": \"1\"\n        },\n        \"clerk\": {\n            \"id\": \"2\"\n        },\n        \"loanDate\": 1611642561669,\n        \"isReturned\": false,\n        \"itemDTOS\": [\n          {\n            \"@name\": \"VideoDTO\",\n            \"id\": \"7\"\n          }\n        ]\n    }"
+				},
+				"url": {
+					"raw": "localhost:8090/loans",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"loans"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Loan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8090/loans/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"loans",
+						"4"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Loan",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": \"1\",\n        \"borrower\": null,\n        \"clerk\": null,\n        \"loanDate\": null,\n        \"dueDate\": null,\n        \"isReturned\": true,\n        \"items\":null\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8090/loans/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"loans",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

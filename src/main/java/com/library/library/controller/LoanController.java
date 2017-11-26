@@ -46,10 +46,4 @@ import java.util.List;
             LoanDTO updatedLoanDTO = service.updateLoan(newLoanDTO, id);
             return new ResponseEntity<LoanDTO>(updatedLoanDTO, HttpStatus.OK);
         }
-
-        @DeleteMapping("/loans/{id}")
-        public ResponseEntity<Void> removeLoan(@PathVariable String id){
-            service.removeLoan(id);
-            return ResponseEntity.noContent().build();
-        }
 }

@@ -43,12 +43,6 @@ public class CollectionController {
         ItemDTO updatedItemDTO = service.updateItem(newItemDTO, id);
         return new ResponseEntity<ItemDTO>(updatedItemDTO, HttpStatus.OK);
     }
-
-    @DeleteMapping("/collection/{id}")
-    public ResponseEntity<Void> removeItem(@PathVariable String id){
-        service.removeItem(id);
-        return ResponseEntity.noContent().build();
-    }
 }
 
 

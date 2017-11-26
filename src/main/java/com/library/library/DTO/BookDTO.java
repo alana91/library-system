@@ -1,3 +1,5 @@
+// codebeat:disable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]
+
 package com.library.library.DTO;
 
 import java.util.Date;
@@ -145,3 +147,6 @@ public class BookDTO implements ItemDTO {
         }
     }
 }
+
+// codebeat:enable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]
+

@@ -1,3 +1,5 @@
+// codebeat:disable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]
+
 package com.library.library.DTO;
 
 import com.library.library.model.User;
@@ -97,3 +99,5 @@ public class LoanDTO {
         }
     }
 }
+
+// codebeat:enable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]

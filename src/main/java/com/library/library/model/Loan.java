@@ -1,3 +1,5 @@
+// codebeat:disable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]
+
 package com.library.library.model;
 
 import java.util.Date;
@@ -24,4 +26,62 @@ public class Loan {
         this.id = id;
         this.isReturned = isReturned;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getBorrowerId() {
+        return borrowerId;
+    }
+
+    public void setBorrowerId(String borrowerId) {
+        this.borrowerId = borrowerId;
+    }
+
+    public String getClerkId() {
+        return clerkId;
+    }
+
+    public void setClerkId(String clerkId) {
+        this.clerkId = clerkId;
+    }
+
+    public Date getLoanDate() {
+        return loanDate;
+    }
+
+    public void setLoanDate(Date loanDate) {
+        this.loanDate = loanDate;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public Boolean getReturned() {
+        return isReturned;
+    }
+
+    public void setReturned(Boolean returned) {
+        isReturned = returned;
+    }
+
+    public List<String> getItemIds() {
+        return itemIds;
+    }
+
+    public void setItemIds(List<String> itemIds) {
+        this.itemIds = itemIds;
+    }
 }
+
+// codebeat:enable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]

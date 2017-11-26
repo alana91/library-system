@@ -43,10 +43,4 @@ public class UserController {
         User updatedUser = service.updateUser(newUser, id);
         return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
     }
-
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<Void> removeUser(@PathVariable String id){
-        service.removeUser(id);
-        return ResponseEntity.noContent().build();
-    }
 }

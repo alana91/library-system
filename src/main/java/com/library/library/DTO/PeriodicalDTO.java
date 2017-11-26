@@ -1,3 +1,5 @@
+// codebeat:disable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]
+
 package com.library.library.DTO;
 
 import java.util.Date;
@@ -120,4 +122,23 @@ public class PeriodicalDTO implements ItemDTO {
             this.id = id;
         }
     }
+
+    public Integer getEdition() {
+        return edition;
+    }
+
+    public void setEdition(Integer edition) {
+        this.edition = edition;
+    }
+
+    public Boolean getBorrowed() {
+        return isBorrowed;
+    }
+
+    public void setBorrowed(Boolean borrowed) {
+        isBorrowed = borrowed;
+    }
 }
+
+// codebeat:enable[TOO_MANY_IVARS, ABC, TOTAL_COMPLEXITY]
+
