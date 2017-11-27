@@ -5,4 +5,4 @@ Small library system project for college.
 **Known issues:**
 - Method to set debt when a loanDTO is updated is untested. Completely. I don't meant unit tests. :sweat:
 - Nonexistent validations
-- Code is complicated and messy
+- Wiring doesn't work when used in utils and actually breaks wiring elsewhere (?), so using singletons instead

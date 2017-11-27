@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public final class UserDAOImpl implements UserDAO {
     private Helper helper = Helper.getInstance();
     private List<User> users = helper.createUserList();
