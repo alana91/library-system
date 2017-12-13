@@ -30,16 +30,13 @@ public class LoanDao {
 
     public Loan updateLoan(Loan loan, String id){
         Loan selectedLoan = getLoan(id);
-        selectedLoan.setBorrower(loan.getBorrower());
-        selectedLoan.setClerk(loan.getClerk());
         selectedLoan.setDueDate(loan.getDueDate());
-        selectedLoan.setLoanDate(loan.getLoanDate());
-        selectedLoan.setItems(loan.getItems());
+        selectedLoan.setIsReturned(loan.getIsReturned());
         return selectedLoan;
     }
-
     public void removeLoan(String id){
         Loan loan = getLoan(id);
         loans.remove(loan);
     }
+
 }

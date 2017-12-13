@@ -1,7 +1,5 @@
 package com.library.library.model;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
 
@@ -11,19 +9,20 @@ public class Loan {
     private User clerk;
     private Date loanDate;
     private Date dueDate;
-    private Boolean returned;
+    private Boolean isReturned;
     private List<Item> items;
 
     public Loan(){}
 
-    public Loan(User borrower, User clerk, Date loanDate, Date dueDate, List<Item> items) {
+    public Loan(User borrower, User clerk, Date loanDate, Date dueDate, List<Item> items, Boolean isReturned,
+                String id) {
         this.borrower = borrower;
         this.clerk = clerk;
         this.loanDate = loanDate;
         this.dueDate = dueDate;
         this.items = items;
-        setId();
-        this.returned = null;
+        this.id = id;
+        this.isReturned = isReturned;
     }
 
     public String getId() {
@@ -50,9 +49,14 @@ public class Loan {
         return items;
     }
 
-    public void setId() {
-        SecureRandom random = new SecureRandom();
-        this.id = new BigInteger(130, random).toString(32);
+    public Boolean getIsReturned() {
+        return isReturned;
+    }
+
+    public void setId(String id) {
+        if(id != null){
+            this.id = id;
+        }
     }
 
     public void setBorrower(User borrower) {
@@ -85,9 +89,9 @@ public class Loan {
         }
     }
 
-    public void setReturned(Boolean returned) {
-        if(returned != null) {
-            this.returned = returned;
+    public void setIsReturned(Boolean isReturned) {
+        if(isReturned != null) {
+            this.isReturned = isReturned;
         }
     }
 }

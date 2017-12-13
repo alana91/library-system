@@ -19,7 +19,6 @@ public class UserService {
     }
 
     public User addUser(User item){
-        item.setId();
         return userDao.addUser(item);
     }
 

@@ -34,6 +34,7 @@ public class ItemDao {
         selectedItem.setCountry(item.getCountry());
         selectedItem.setDate(item.getDate());
         selectedItem.setTitle(item.getTitle());
+        selectedItem.setIsBorrowed(item.getIsBorrowed());
         return selectedItem;
     }
 

@@ -9,8 +9,8 @@ public class Periodical extends Item{
 
     public Periodical(){}
     public Periodical(Date date, String title, List<PersonOrCompany> authors, String area, String country,
-                      List<PersonOrCompany> publisher, Integer edition) {
-        super(date, title, authors, area, country);
+                      List<PersonOrCompany> publisher, Integer edition, Boolean borrowed, String id) {
+        super(date, title, authors, area, country, borrowed, id);
         this.publisher = publisher;
         this.edition = edition;
     }

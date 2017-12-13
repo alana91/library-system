@@ -9,8 +9,8 @@ public class Audio extends Item {
 
     public Audio(){}
     public Audio(Date date, String title, List<PersonOrCompany> authors, String area, String country,
-                 List<PersonOrCompany> recordCompanies) {
-        super(date, title, authors, area, country);
+                 List<PersonOrCompany> recordCompanies, Boolean borrowed, String id) {
+        super(date, title, authors, area, country, borrowed, id);
         this.recordCompanies = recordCompanies;
     }
 

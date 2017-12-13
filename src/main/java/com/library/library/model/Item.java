@@ -1,9 +1,7 @@
 package com.library.library.model;
 
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
-import java.security.SecureRandom;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -24,16 +22,19 @@ public abstract class Item {
     private String area;
     private String country;
     private String id;
+    private Boolean isBorrowed;
 
     public Item(){}
 
-    public Item(Date date, String title, List<PersonOrCompany> authors, String area, String country) {
+    public Item(Date date, String title, List<PersonOrCompany> authors, String area, String country, Boolean borrowed,
+                String id) {
         this.date = date;
         this.title = title;
         this.authors = authors;
         this.area = area;
         this.country = country;
-        setId();
+        this.isBorrowed = borrowed;
+        this.id = id;
     }
 
     public Date getDate() {
@@ -58,6 +59,10 @@ public abstract class Item {
 
     public String getId() {
         return id;
+    }
+
+    public Boolean getIsBorrowed() {
+        return isBorrowed;
     }
 
     public void setDate(Date date) {
@@ -90,8 +95,15 @@ public abstract class Item {
         }
     }
 
-    public void setId() {
-        SecureRandom random = new SecureRandom();
-        this.id = new BigInteger(130, random).toString(32);
+    public void setIsBorrowed(Boolean borrowed) {
+        if(borrowed != null) {
+            this.isBorrowed = borrowed;
+        }
+    }
+
+    public void setId(String id) {
+        if(id != null) {
+            this.id = id;
+        }
     }
 }

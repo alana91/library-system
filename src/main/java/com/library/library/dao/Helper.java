@@ -3,6 +3,7 @@ package com.library.library.dao;
 import com.library.library.model.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,19 +33,21 @@ public class Helper {
         if(items==null){
             items = new LinkedList<Item>();
             items.add(new Book(date, "Book Title", createAuthorList(), "Neuroscience", "Argentina",
-                    "ISBN", createPublisher(), 3));
+                    "ISBN", createPublisher(), 3, true, "1"));
             items.add(new Book(date, "Book Title 2", createAuthorList(), "Computer Science", "Brazil",
-                    "ISBN", createPublisher(), 3));
+                    "ISBN", createPublisher(), 3, true, "2"));
             items.add(new Audio(date, "Audio Title", createAuthorList(), "Rock", "Japan",
-                    createRecordCompany()));
+                    createRecordCompany(), true, "3"));
             items.add(new Audio(date, "Audio Title 2", createAuthorList(), "Country", "USA",
-                    createRecordCompany()));
+                    createRecordCompany(), false,"4"));
             items.add(new Periodical(date, "Magazine Title", null, "Gossip", "England",
-                    createPublisher(), 22));
+                    createPublisher(), 22, false,"5"));
             items.add(new Periodical(date, "Magazine Title", null, "Microbiology", "France",
-                    createPublisher(), 1));
-            items.add(new Video(date, "Video Title", createDirectorList(), "Documentary","Denmark"));
-            items.add(new Video(date, "Video Title 2", createDirectorList(), "Horror","South Korea"));
+                    createPublisher(), 1, false,"6"));
+            items.add(new Video(date, "Video Title", createDirectorList(), "Documentary","Denmark",
+                    false,"7"));
+            items.add(new Video(date, "Video Title 2", createDirectorList(), "Horror","South Korea",
+                    false,"8"));
         }
         return items;
     }
@@ -52,12 +55,12 @@ public class Helper {
     protected List<User> createUserList(){
         if(users==null){
             users = new LinkedList<User>();
-            users.add(new User("John", false, "client"));
-            users.add(new User("Mary", false, "clerk"));
-            users.add(new User("Elliot", false, "clerk"));
-            users.add(new User("Mary", false, "client"));
-            users.add(new User("Melissa", false, "clerk"));
-            users.add(new User("Edward", false, "client"));
+            users.add(new User("John", false, "client","1"));
+            users.add(new User("Mary", false, "clerk","2"));
+            users.add(new User("Elliot", false, "clerk","3"));
+            users.add(new User("Mary", false, "client","4"));
+            users.add(new User("Melissa", false, "clerk","5"));
+            users.add(new User("Edward", false, "client","6"));
         }
         return users;
     }
@@ -68,8 +71,10 @@ public class Helper {
             users = createUserList();
             items = createItemList();
             loans = new LinkedList<Loan>();
-            loans.add(new Loan((User)users.get(0), (User)users.get(1), date, dueDate, items));
-            loans.add(new Loan((User)users.get(3), (User)users.get(2), date, dueDate, items));
+            loans.add(new Loan((User)users.get(0), (User)users.get(1), date, dueDate,
+                    new LinkedList<>(Arrays.asList((Item)items.get(0))), false, "1"));
+            loans.add(new Loan((User)users.get(3), (User)users.get(2), date, dueDate,
+                    new LinkedList<>(Arrays.asList((Item)items.get(1), (Item)items.get(2))),false, "2"));
         }
         return loans;
     }

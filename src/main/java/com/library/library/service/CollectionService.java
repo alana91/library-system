@@ -8,7 +8,7 @@ import java.util.List;
 @Service("CollectionService")
 public class CollectionService{
 
-    ItemDao itemDao = new ItemDao();
+    private ItemDao itemDao = new ItemDao();
 
     public List<Item> getAll(){
         return itemDao.getAll();
@@ -19,7 +19,6 @@ public class CollectionService{
     }
 
     public Item addItem(Item item){
-        item.setId();
         return itemDao.addItem(item);
     }
 

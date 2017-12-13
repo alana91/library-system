@@ -1,8 +1,5 @@
 package com.library.library.model;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
-
 public class User {
     private String id;
     private String name;
@@ -11,11 +8,11 @@ public class User {
 
     public User(){}
 
-    public User(String name, Boolean hasDebt, String accessLevel) {
+    public User(String name, Boolean hasDebt, String accessLevel, String id) {
         this.name = name;
         this.hasDebt = hasDebt;
         this.accessLevel = accessLevel;
-        setId();
+        this.id = id;
     }
 
     public String getId() {
@@ -34,9 +31,10 @@ public class User {
         return accessLevel;
     }
 
-    public void setId() {
-        SecureRandom random = new SecureRandom();
-        this.id = new BigInteger(130, random).toString(32);
+    public void setId(String id) {
+        if(id!=null){
+            this.id = id;
+        }
     }
 
     public void setName(String name) {
@@ -56,4 +54,5 @@ public class User {
             this.accessLevel = accessLevel;
         }
     }
+
 }
